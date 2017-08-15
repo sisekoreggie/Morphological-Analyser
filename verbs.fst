@@ -18,7 +18,8 @@ $verb-pref-ndiza$ = <Verb>:<> ({<past>}:{ndiza})
 $verb-pref-ndizo$ = <Verb>:<> ({<future>}:{ndizo})
 $verb-pref-ndiya$ = <Verb>:<> ({<present>}:{ndiya})
 $verb-pref-ndi$ = <Verb>:<> ({<pastAndPresent>}:{ndi})
-$verb-pref-uku$ = <Verb>:<> ({<isixando_sokwenzela>}:{uku})
+$verb-pref-uku$ = <Verb>:<> ({<izixando>}:{uku})
+$verb-pref-baya$ = <Verb>:<> ({<isixando>}:{baya})
 
 $ndiza_ku$ = $verb-pref-ndiza_ku$ "verbs.txt"
 $ndizo$ = $verb-pref-ndizo$ "verbs.txt"
@@ -26,6 +27,7 @@ $ndiza$ = $verb-pref-ndiza$ "verbs.txt"
 $ndiya$ = $verb-pref-ndiya$ "verbs.txt"
 $ndi$ = $verb-pref-ndi$ "verbs.txt"
 $uku$ = $verb-pref-uku$ "verbs.txt"
+$baya$ = $verb-pref-baya$ "verbs.txt"
 
 %Define a rule that replaces a with empty string
 
@@ -36,15 +38,15 @@ $uku$ = $verb-pref-uku$ "verbs.txt"
 ALPHABET = [A-Za-z] a:<>
 $remove_a$ = {a}:{<>} ^-> (__ \$) 
 
-%Define replace 'e' rule
+%Define replace 'e' rule (ixesha elidluleyo)
 ALPHABET = [A-Za-z] e:<>
 $remove_e$ = {e}:{<>} ^-> (__ \$) 
 
-%Define replace 'ile' rule
+%Define replace 'ile' rule (ixesha elidluleyo)
 ALPHABET = [A-Za-z] {ile}:<>
 $remove_ile$ = {ile}:{<>} ^-> (__ \$)
 
-%Define replace 'anga' rule
+%Define replace 'anga' rule (ixesha elidluleyo)
 ALPHABET = [A-Za-z] {anga}:<>
 $remove_anga$ = {anga}:{<>} ^-> (__ \$)
 
@@ -68,6 +70,14 @@ $remove_isisa$ = {isisa}:{<>} ^-> (__ \$)
 ALPHABET = [A-Za-z] {ana}:<>
 $remove_ana$ = {ana}:{<>} ^-> (__ \$)
 
+%Define replace 'eka' rule
+ALPHABET = [A-Za-z] {eka}:<>
+$remove_eka$ = {eka}:{<>} ^-> (__ \$)
+
+%Define replace 'wa' rule
+ALPHABET = [A-Za-z] {wa}:<>
+$remove_wa$ = {wa}:{<>} ^-> (__ \$)
+
 %$morph$ = $verb-pref$ "verbs.txt"
 
 $ile$ = ^_$remove_ile$ 
@@ -79,9 +89,11 @@ $elela$ = ^_$remove_elela$
 $isa$ = ^_$remove_isa$
 $isisa$ = ^_$remove_isisa$
 $ana$ = ^_$remove_ana$ 
+$eka$ = ^_$remove_eka$
+$wa$ = ^_$remove_wa$
 
 %Calling all the rules which were define on top
-($ndiza_ku$ || $a$) | ($ndizo$ || $a$) | ($ndiya$ || $a$) | ($ndi$ || $ile$) | ($ndi$ || $e$) | ($ndi$ || $a$) | ($uku$ || $ela$) | ($uku$ || $elela$) | ($uku$ || $isa$) | ($uku$ || $isisa$) | ($uku$ || $ana$)
+($ndiza_ku$ || $a$) | ($ndizo$ || $a$) | ($ndiya$ || $a$) | ($ndi$ || $ile$) | ($ndi$ || $e$) | ($ndi$ || $a$) | ($uku$ || $ela$) | ($uku$ || $elela$) | ($uku$ || $isa$) | ($uku$ || $isisa$) | ($uku$ || $ana$) | ($uku$ || $eka$) | ($uku$ || $wa$) | ($baya$ || $a$) | ($baya$ || $ana$)
 
 %$remover$ = <> a <=> <> [a-z]*
 %$remover$ "verbs.txt"
