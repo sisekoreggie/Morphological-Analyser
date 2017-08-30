@@ -13,7 +13,28 @@ $verb-pref$ = <Verb>:<> (\
 	{<pastAndPresent>}:{ndi} |\
 	{<future>}:{ndiza ku})
 
-$verb-pref-ndiza_ku$ = <Verb>:<> ({<future>}:{ndiza ku})
+%Transducer for izivumelanisi zentloko
+$izivumelanisi-zentloko$ = <Verb>:<> (\
+	{<umntu_I>}:{ndi} | {<umntu_I>}:{nd} | {<umntu_I>}:{si} | {<umntu_I>}:{s} |\
+	{<umntu_II>}:{ku} | {<umntu_II>}:{wu} | {<umntu_II>}:{ni} | {<umntu_II>}:{w} | {<umntu_II>}:{n} |\
+	{<ihlelo_1>}:{u} | {<ihlelo_1>}:{w} | {<ihlelo_1>}:{a} | {<ihlelo_1>}:{ka} | {<ihlelo_1>}:{k} | {<ihlelo_1>}:{w} |\
+	{<ihlelo_2>}:{ba} | {<ihlelo_2>}:{be} | {<ihlelo_2>}:{b} |\
+	{<ihlelo_3>}:{u} | {<ihlelo_3>}:{wu} | {<ihlelo_3>}:{w} |\
+	{<ihlelo_4>}:{i} | {<ihlelo_4>}:{yi} | {<ihlelo_4>}:{y} |\
+	{<ihlelo_5>}:{li} | {<ihlelo_5>}:{l} |\
+	{<ihlelo_6>}:{a} | {<ihlelo_6>}:{ka} | {<ihlelo_6>}:{k} |\
+	{<ihlelo_7>}:{si} | {<ihlelo_7>}:{s} |\
+	{<ihlelo_8>}:{zi} | {<ihlelo_8>}:{z} |\
+	{<ihlelo_9>}:{i} | {<ihlelo_9>}:{yi} | {<ihlelo_9>}:{y} |\
+	{<ihlelo_10>}:{zi} | {<ihlelo_10>}:{z} |\
+	{<ihlelo_11>}:{lu} | {<ihlelo_11>}:{l} |\
+	{<ihlelo_14>}:{bu} | {<ihlelo_14>}:{b} |\
+	{<ihlelo_15>}:{ku} | {<ihlelo_15>}:{k} | {<ihlelo_15>}:{kwa})
+
+ALPHABET = [a-z]
+$not_a$ = !(o|a|e|i|u)
+
+$verb-pref-ndiza_ku$ = <Verb>:<> ({<future>}:{ndizaku})
 $verb-pref-ndiza$ = <Verb>:<> ({<past>}:{ndiza})
 $verb-pref-ndizo$ = <Verb>:<> ({<future>}:{ndizo})
 $verb-pref-ndiya$ = <Verb>:<> ({<present>}:{ndiya})
@@ -21,13 +42,13 @@ $verb-pref-ndi$ = <Verb>:<> ({<pastAndPresent>}:{ndi})
 $verb-pref-uku$ = <Verb>:<> ({<izixando>}:{uku})
 $verb-pref-baya$ = <Verb>:<> ({<isixando>}:{baya})
 
-$ndiza_ku$ = $verb-pref-ndiza_ku$ "verbs.txt"
-$ndizo$ = $verb-pref-ndizo$ "verbs.txt"
-$ndiza$ = $verb-pref-ndiza$ "verbs.txt"
-$ndiya$ = $verb-pref-ndiya$ "verbs.txt"
-$ndi$ = $verb-pref-ndi$ "verbs.txt"
-$uku$ = $verb-pref-uku$ "verbs.txt"
-$baya$ = $verb-pref-baya$ "verbs.txt"
+$ndiza_ku$ = ($verb-pref-ndiza_ku$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
+$ndizo$ = ($verb-pref-ndizo$$not_a$) ("verbs.txt" & !"verbs-vowel.txt")
+$ndiza$ = ($verb-pref-ndiza$$not_a$) ("verbs.txt" & !"verbs-vowel.txt")
+$ndiya$ = ($verb-pref-ndiya$$not_a$) ("verbs.txt" & !"verbs-vowel.txt")
+$ndi$ = ($verb-pref-ndi$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
+$uku$ = ($verb-pref-uku$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
+$baya$ = ($verb-pref-baya$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
 
 %Define a rule that replaces a with empty string
 
@@ -74,11 +95,19 @@ $remove_ana$ = {ana}:{<>} ^-> (__ \$)
 ALPHABET = [A-Za-z] {eka}:<>
 $remove_eka$ = {eka}:{<>} ^-> (__ \$)
 
-%Define replace 'wa' rule
+%Isixando Sokwenziwa
+%Define replace 'wa' and 'we' rule
+ALPHABET = [A-Za-z] {iwa}:<>
+$remove_wa$ = {iwa}:{<>} ^-> (__ \$)
+
 ALPHABET = [A-Za-z] {wa}:<>
 $remove_wa$ = {wa}:{<>} ^-> (__ \$)
 
+ALPHABET = [A-Za-z] {we}:<>
+$remove_wa$ = {we}:{<>} ^-> (__ \$)
+
 %$morph$ = $verb-pref$ "verbs.txt"
+
 
 $ile$ = ^_$remove_ile$ 
 $a$ = ^_$remove_a$ 
@@ -92,8 +121,17 @@ $ana$ = ^_$remove_ana$
 $eka$ = ^_$remove_eka$
 $wa$ = ^_$remove_wa$
 
+%$kk$ = ([a-z]&!(a|e|i|o|u))
+%$ndizo$ = $verb-pref-ndizo$ $kk$ || "verbs.txt"
+%($ndizo$ || $a$) 
+
+ALPHABET = [a-z]
+$not_a$ = !i
+
+$verb-pref$$izivumelanisi-zentloko$ "verbs.txt"
+
 %Calling all the rules which were define on top
-($ndiza_ku$ || $a$) | ($ndizo$ || $a$) | ($ndiya$ || $a$) | ($ndi$ || $ile$) | ($ndi$ || $e$) | ($ndi$ || $a$) | ($uku$ || $ela$) | ($uku$ || $elela$) | ($uku$ || $isa$) | ($uku$ || $isisa$) | ($uku$ || $ana$) | ($uku$ || $eka$) | ($uku$ || $wa$) | ($baya$ || $a$) | ($baya$ || $ana$)
+%($ndiza_ku$ || $a$) | ($ndizo$ || $a$) | ($ndiya$ || $a$) | ($ndi$ || $ile$) | ($ndi$ || $e$) | ($ndi$ || $a$) | ($uku$ || $ela$) | ($uku$ || $elela$) | ($uku$ || $isa$) | ($uku$ || $isisa$) | ($uku$ || $ana$) | ($uku$ || $eka$) | ($uku$ || $wa$) | ($baya$ || $a$) | ($baya$ || $ana$)
 
 %$remover$ = <> a <=> <> [a-z]*
 %$remover$ "verbs.txt"

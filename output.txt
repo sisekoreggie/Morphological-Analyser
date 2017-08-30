@@ -1,0 +1,22 @@
+> umntwna
+no result for umntwna
+> umtu
+umtu
+> abantu
+abantu
+> umntwana
+umntwana
+> oomama
+oomama
+> izinja
+izinja
+> ikati
+ikati
+> ndibhoxile
+<Verb><pastAndPresent>bhox
+> ndibuyile
+<Verb><pastAndPresent>buy
+> ndiyabuya
+<Verb><present>buy
+> ndizofika
+<Verb><future>fik
