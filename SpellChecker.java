@@ -22,28 +22,32 @@ public class SpellChecker {
     			        Scanner s2 = new Scanner(sc2.nextLine());
     			    while (s2.hasNext()) {
     			        String s = s2.next();
+				s = (s.replaceAll("[,.()]", "")).toLowerCase();
 				out.println(String.format(s));
     			    }
     			}
 			out.close();
 
 			Process p = Runtime.getRuntime().exec("fst-infl tester.a input.txt output.txt");
+			p.waitFor(); 
 
 			//Reading the output of the programme from a file and then printing out the misspelled words
+
 			FileInputStream fstream = new FileInputStream("output.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
+			
 			String strLine, prevStr = "";
 			while ((strLine = br.readLine()) != null)   {
+				//System.out.println("In while");
 				if (strLine.contains("no result for")) {
 					System.out.println(prevStr);
 				}
-				prevStr = strLine;
+				prevStr = strLine.replaceAll("[> ]", "");
 			}
 			br.close();
 
 		} catch(Exception e) {
-			System.out.println ("Exception Caught");
+			System.out.println ("Exception Caught here");
 		}
 
 	}
