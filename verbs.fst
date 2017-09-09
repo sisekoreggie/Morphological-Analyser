@@ -1,162 +1,126 @@
-%Transducer of the suffixes for the verb roots, in terms of their tenses
-$verb-reg-infl$ = <Verb>:<> (\
-	{<present>}:{a} |\
-	{<past>}:{ile} |\
-	{<past>}:{anga} |\
-	{<past>}:{e})
+%Transducer for izivumelanisi zentloko with vowels
+$with-vowels$ = <>:<> (\
+	{<>}:{ndi} | {<>}:{si} |\ %Umntu_I
+	{<>}:{ku} | {<>}:{wu} | {<>}:{ni} |\ %Umntu_II
+	{<>}:{u} | {<>}:{a} | {<>}:{ka} |\ %Ihlelo_1
+	{<>}:{ba} | {<>}:{be} |\ %ihlelo_2
+	{<>}:{u} | {<>}:{wu} |\ %ihlelo_3
+	{<>}:{i} | {<>}:{yi} |\ %ihlelo_4
+	{<>}:{li} |\ %ihlelo_5
+	{<>}:{a} | {<>}:{ka} |\ %ihlelo_6
+	{<>}:{si} |\ %ihlelo_7
+	{<>}:{zi} |\ %ihlelo_8
+	{<>}:{i} | {<>}:{yi} |\ %ihlelo_9
+	{<>}:{zi} |\ %ihlelo_10
+	{<>}:{lu} |\ %ihlelo_11
+	{<>}:{bu} |\ %ihlelo_14
+	{<>}:{ku} | {<>}:{kwa}) %ihlelo_15
 
-%Transducer of the prefixes for the verbs roots in terms of their tenses
-$verb-pref$ = <Verb>:<> (\
-	{<future>}:{ndizo} |\
-	{<pasts>}:{ndiza} |\
-	{<presents>}:{ndiya} |\
-	{<pastAndPresent>}:{ndi} |\
-	{<future>}:{ndiza ku})
+%Transducer for izivumelanisi zentloko without vowels
+$without-vowels$ = <>:<> (\
+	{<>}:{nd} | {<>}:{s} |\ %Umntu_I
+	{<>}:{w} | {<>}:{n} |\ %Umntu_II
+	{<>}:{w} | {<>}:{k} | {<>}:{w} |\ %Ihlelo_1
+	{<>}:{b} |\ %ihlelo_2
+	{<>}:{w} |\ %ihlelo_3
+	{<>}:{y} |\ %ihlelo_4
+	{<>}:{l} |\ %ihlelo_5
+	{<>}:{k} |\ %ihlelo_6
+	{<>}:{s} |\ %ihlelo_7
+	{<>}:{z} |\ %ihlelo_8
+	{<>}:{y} |\ %ihlelo_9
+	{<>}:{z} |\ %ihlelo_10
+	{<>}:{l} |\ %ihlelo_11
+	{<>}:{b} |\ %ihlelo_14
+	{<>}:{k}) %ihlelo_15
 
-%Transducer for izivumelanisi zentloko
-$izivumelanisi-zentloko$ = <Verb>:<> (\
-	{<umntu_I>}:{ndi} | {<umntu_I>}:{nd} | {<umntu_I>}:{si} | {<umntu_I>}:{s} |\
-	{<umntu_II>}:{ku} | {<umntu_II>}:{wu} | {<umntu_II>}:{ni} | {<umntu_II>}:{w} | {<umntu_II>}:{n} |\
-	{<ihlelo_1>}:{u} | {<ihlelo_1>}:{w} | {<ihlelo_1>}:{a} | {<ihlelo_1>}:{ka} | {<ihlelo_1>}:{k} | {<ihlelo_1>}:{w} |\
-	{<ihlelo_2>}:{ba} | {<ihlelo_2>}:{be} | {<ihlelo_2>}:{b} |\
-	{<ihlelo_3>}:{u} | {<ihlelo_3>}:{wu} | {<ihlelo_3>}:{w} |\
-	{<ihlelo_4>}:{i} | {<ihlelo_4>}:{yi} | {<ihlelo_4>}:{y} |\
-	{<ihlelo_5>}:{li} | {<ihlelo_5>}:{l} |\
-	{<ihlelo_6>}:{a} | {<ihlelo_6>}:{ka} | {<ihlelo_6>}:{k} |\
-	{<ihlelo_7>}:{si} | {<ihlelo_7>}:{s} |\
-	{<ihlelo_8>}:{zi} | {<ihlelo_8>}:{z} |\
-	{<ihlelo_9>}:{i} | {<ihlelo_9>}:{yi} | {<ihlelo_9>}:{y} |\
-	{<ihlelo_10>}:{zi} | {<ihlelo_10>}:{z} |\
-	{<ihlelo_11>}:{lu} | {<ihlelo_11>}:{l} |\
-	{<ihlelo_14>}:{bu} | {<ihlelo_14>}:{b} |\
-	{<ihlelo_15>}:{ku} | {<ihlelo_15>}:{k} | {<ihlelo_15>}:{kwa})
+%Transducer for izivumelanisi zenjongosenzi with vowels
+$with-vowels-njongosenzi$ = <>:<> (\
+	{<>}:{ndi} | {<>}:{si} |\ %Umntu_I
+	{<>}:{ku} | {<>}:{ni} |\ %Umntu_II
+	{<>}:{ba} |\ %ihlelo_2
+	{<>}:{wu} |\ %ihlelo_3
+	{<>}:{yi} |\ %ihlelo_4
+	{<>}:{li} |\ %ihlelo_5
+	{<>}:{wa} |\ %ihlelo_6
+	{<>}:{si} |\ %ihlelo_7
+	{<>}:{zi} |\ %ihlelo_8
+	{<>}:{yi} |\ %ihlelo_9
+	{<>}:{zi} |\ %ihlelo_10
+	{<>}:{lu} |\ %ihlelo_11
+	{<>}:{bu} |\ %ihlelo_14
+	{<>}:{ku} | {<>}:{kwa}) %ihlelo_15
 
-ALPHABET = [a-z]
-$not_a$ = !(o|a|e|i|u)
+%Transducer for izivumelanisi zenjongosenzi without vowels
+$without-vowels-njongosenzi$ = <>:<> (\
+	{<>}:{nd} | {<>}:{s} |\ %Umntu_I
+	{<>}:{k} | {<>}:{n} |\ %Umntu_II
+	{<>}:{m} |\ %Ihlelo_1
+	{<>}:{w} |\ %ihlelo_3
+	{<>}:{y} |\ %ihlelo_4
+	{<>}:{l} |\ %ihlelo_5
+	{<>}:{w} |\ %ihlelo_6
+	{<>}:{s} |\ %ihlelo_7
+	{<>}:{z} |\ %ihlelo_8
+	{<>}:{y} |\ %ihlelo_9
+	{<>}:{z} |\ %ihlelo_10
+	{<>}:{l} |\ %ihlelo_11
+	{<>}:{b} |\ %ihlelo_14
+	{<>}:{k}) %ihlelo_15
 
-$verb-pref-ndiza_ku$ = <Verb>:<> ({<future>}:{ndizaku})
-$verb-pref-ndiza$ = <Verb>:<> ({<past>}:{ndiza})
-$verb-pref-ndizo$ = <Verb>:<> ({<future>}:{ndizo})
-$verb-pref-ndiya$ = <Verb>:<> ({<present>}:{ndiya})
-$verb-pref-ndi$ = <Verb>:<> ({<pastAndPresent>}:{ndi})
-$verb-pref-uku$ = <Verb>:<> ({<izixando>}:{uku})
-$verb-pref-baya$ = <Verb>:<> ({<isixando>}:{baya})
+%Transducer for izimaphambili zoguquguqulo
+$phambi-kwesentloko$ = <>:<> (\
+	{<>}:{kha} |\
+	{<>}:{khe} |\
+	{<>}:{se} |\
+	{<>}:{be} |\
+	{<>}:{ze} |\
+	{<>}:{ma})
 
-$ndiza_ku$ = ($verb-pref-ndiza_ku$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
-$ndizo$ = ($verb-pref-ndizo$$not_a$) ("verbs.txt" & !"verbs-vowel.txt")
-$ndiza$ = ($verb-pref-ndiza$$not_a$) ("verbs.txt" & !"verbs-vowel.txt")
-$ndiya$ = ($verb-pref-ndiya$$not_a$) ("verbs.txt" & !"verbs-vowel.txt")
-$ndi$ = ($verb-pref-ndi$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
-$uku$ = ($verb-pref-uku$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
-$baya$ = ($verb-pref-baya$ || $not_a$) ("verbs.txt" & !"verbs-vowel.txt")
+$emva-kwesentloko$ = <>:<> (\
+	{<>}:{nga} |\
+	{<>}:{nge} |\
+	{<>}:{ya} |\
+	{<>}:{sa} |\
+	{<>}:{ka})
 
-%Define a rule that replaces a with empty string
+%Transducer for isimaphambili soguquguqulo that starts with a vowel
+$isikhamiso$ = <>:<> ({<>}:{a})
 
-%$remove_a$ = [a-z] a <=> <> (<> ^[a-z])
-%$remove_a$ = [a-z][a-z] a <=> <> ({<>}:<> | ^[a-z]:<>)
+%Transducer for isimaphambili: isakhi sokuzenza u 'zi'
+$zi$ = <>:<> ({<>}:{zi})
 
-%Define replace 'a' rule
-ALPHABET = [A-Za-z] a:<>
-$remove_a$ = {a}:{<>} ^-> (__ \$) 
+%Rule for removing the suffixes for izixando
+$remove$ = <>:{wa} | <>:{we} | <>:{iwe} | <>:{aneka} | <>:{iseka} | <>:{eleka} | <>:{ekekeka} | <>:{ekeka} | <>:{akala} | <>:{eka} | <>:{isana} | <>:{elana} | <>:{elelana} | <>:{ana} | <>:{olo} | <>:{ela} | <>:{ele} | <>:{la} | <>:{ya} | <>:{za} | <>:{sa} | <>:{esa} | <>:{isa}
 
-%Define replace 'e' rule (ixesha elidluleyo)
-ALPHABET = [A-Za-z] e:<>
-$remove_e$ = {e}:{<>} ^-> (__ \$) 
+%Repeating suffixes for izixando
+$repeated$ = ((<>:{el})+<>:{a}) | ((<>:{el})+<>:{e}) | ((<>:{is})+<>:{a}) | ((<>:{is})+<>:{e}) 
 
-%Define replace 'ile' rule (ixesha elidluleyo)
-ALPHABET = [A-Za-z] {ile}:<>
-$remove_ile$ = {ile}:{<>} ^-> (__ \$)
+$remove$ = $remove$ | $repeated$
 
-%Define replace 'anga' rule (ixesha elidluleyo)
-ALPHABET = [A-Za-z] {anga}:<>
-$remove_anga$ = {anga}:{<>} ^-> (__ \$)
+%| <>:{ene} | <>:{anwa} | <>:{enwe}
+%Rule for removing suffixes zexesha elidlulileyo kwizivumo nakwizilandulo
+$elidlulileyo$ = <>:{ile} | <>:{anga} | <>:{a} 
 
-%Define replace 'ela' rule
-ALPHABET = [A-Za-z] {ela}:<>
-$remove_ela$ = {ela}:{<>} ^-> (__ \$)
+%Isimamva sesininzi kwisiyaleli
+$ni$ = <>:{ni}
 
-%Define replace 'elela' rule
-ALPHABET = [A-Za-z] {elela}:<>
-$remove_elela$ = {elela}:{<>} ^-> (__ \$)
+%Isimamva sesibaluli
+$yo$ = <>:{yo}
 
-%Define replace 'isa' rule
-ALPHABET = [A-Za-z] {isa}:<>
-$remove_isa$ = {isa}:{<>} ^-> (__ \$)
+%Isigqibelo sesilanduli
+$remove_i$ = <>:{i}
 
-%Define replace 'isisa' rule
-ALPHABET = [A-Za-z] {isisa}:<>
-$remove_isisa$ = {isisa}:{<>} ^-> (__ \$)
+%Ezinye izimamva
+$final$ = <>:{ula} | <>:{ulula} | <>:{uluka} | <>:{ama} | <>:{ma} | <>:{atha} | <>:{tha} | <>:{ala} | <>:{alala} | <>:{nga} | <>:{zela} | <>:{ba} | <>:{pha} | <>:{leza} | <>:{ka} | <>:{da} | <>:{ta} | <>:{sha} | <>:{za} | <>:{bala}
 
-%Define replace 'ana' rule
-ALPHABET = [A-Za-z] {ana}:<>
-$remove_ana$ = {ana}:{<>} ^-> (__ \$)
+$intloko-enesikhamiso$ = ($phambi-kwesentloko$$with-vowels$ | $with-vowels$$emva-kwesentloko$ | $with-vowels$) 
+$intloko-engenasikhamiso$ = $without-vowels$$isikhamiso$ | $isikhamiso$
 
-%Define replace 'eka' rule
-ALPHABET = [A-Za-z] {eka}:<>
-$remove_eka$ = {eka}:{<>} ^-> (__ \$)
+$injongosenzi$ = $with-vowels-njongosenzi$$zi$ | $with-vowels-njongosenzi$  
 
-%Isixando Sokwenziwa
-%Define replace 'wa' and 'we' rule
-ALPHABET = [A-Za-z] {iwa}:<>
-$remove_wa$ = {iwa}:{<>} ^-> (__ \$)
+$vowel-starting-verbs$ = $intloko-engenasikhamiso$$without-vowels-njongosenzi$ | $intloko-enesikhamiso$$without-vowels-njongosenzi$ | $without-vowels$ | $without-vowels-njongosenzi$
 
-ALPHABET = [A-Za-z] {wa}:<>
-$remove_wa$ = {wa}:{<>} ^-> (__ \$)
+(($intloko-enesikhamiso$ | $intloko-engenasikhamiso$)? ($injongosenzi$)? "verbs.txt" ($remove$ | $elidlulileyo$ | $ni$ | $yo$ | $remove_i$ | $final$)) | ($vowel-starting-verbs$ "verbs-vowel.txt" ($remove$ | $elidlulileyo$ | $ni$ | $yo$ | $remove_i$ | $final$))
 
-ALPHABET = [A-Za-z] {we}:<>
-$remove_wa$ = {we}:{<>} ^-> (__ \$)
-
-%$morph$ = $verb-pref$ "verbs.txt"
-
-
-$ile$ = ^_$remove_ile$ 
-$a$ = ^_$remove_a$ 
-$e$ = ^_$remove_e$ 
-$anga$ = ^_$remove_anga$ 
-$ela$ = ^_$remove_ela$
-$elela$ = ^_$remove_elela$
-$isa$ = ^_$remove_isa$
-$isisa$ = ^_$remove_isisa$
-$ana$ = ^_$remove_ana$ 
-$eka$ = ^_$remove_eka$
-$wa$ = ^_$remove_wa$
-
-%$kk$ = ([a-z]&!(a|e|i|o|u))
-%$ndizo$ = $verb-pref-ndizo$ $kk$ || "verbs.txt"
-%($ndizo$ || $a$) 
-
-ALPHABET = [a-z]
-$not_a$ = !i
-
-$verb-pref$$izivumelanisi-zentloko$ "verbs.txt"
-
-%Calling all the rules which were define on top
-%($ndiza_ku$ || $a$) | ($ndizo$ || $a$) | ($ndiya$ || $a$) | ($ndi$ || $ile$) | ($ndi$ || $e$) | ($ndi$ || $a$) | ($uku$ || $ela$) | ($uku$ || $elela$) | ($uku$ || $isa$) | ($uku$ || $isisa$) | ($uku$ || $ana$) | ($uku$ || $eka$) | ($uku$ || $wa$) | ($baya$ || $a$) | ($baya$ || $ana$)
-
-%$remover$ = <> a <=> <> [a-z]*
-%$remover$ "verbs.txt"
-
-%$morph$ || $ile$ 
-
-%$first_Rule$ = <>:a 
-%$second_rule$ = <>:{ile}
-%$third_rule$ = <>:{anga}
-%$forth_rule$ = <>:e
-
-%$replace$ = "verbs.txt" $second_rule$ | "verbs.txt" $third_rule$ | "verbs.txt" $first_Rule$ | "verbs.txt" $forth_rule$
-
-%$morph$ = $verb-pref$ "verbs.txt" %| "verbs.txt" $verb-reg-infl$
-
-%$replace$ %& $morph$
-
-%^_$first_Rule$
-
-
-%$R1$ %|| $morph$ 
-
-%"verbs.txt" |\
-%$morph$ = "verbs.txt" $verb-reg-infl$
-%ALPHABET = [<Verb><pastAndPresent>]:<> [A-Za-z] a:<>
-%$y-to-ie$ = e <=> <> (<Verb>:<> [ie]) %{Ndi}:{ie} ^-> (__ [<Verb>] )
-%$morph$ || $y-to-ie$
 

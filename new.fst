@@ -1,5 +1,5 @@
 %New file
-"<tester.a>" | "<verbs.a>"
+"<verify.a>" | "<adjectives.a>" | "<tester.a>"
 
 %ALPHABET = [a-z]
 %$non-vowels$ = ([a-z]&!(a|e|i|o|u))

@@ -31,8 +31,6 @@ $isv-esongezelelweyo$ = <>:<> (\
 
 $nga$ = <>:<> ({<>}:{nga})
 
-%$izibaluli$ = ($isv-esongezelelweyo$ | $isv-sentsusa$ | $nga$) "iziphawuli.txt"
-
 %Izibaluli
 $isv-sentsusa-baluli$ = <>:<> (\
 	{<>}:{ndi} | {<>}:{si} |\ %Umntu_I
@@ -68,12 +66,12 @@ $isv-esongezelelweyo-baluli$ = <>:<> (\
 	{<>}:{obu} |\ %ihlelo_14
 	{<>}:{oku}) %ihlelo_15
 
+$nga-nge$ = <>:<> ({<>}:{nga} | {<>}:{nge})
+
 %Ubume obungafezekanga
 $bu$ = <>:<> ({<>}:{bu})
 $sabu$ = <>:<> ({<>}:{sabu})
 $rha$ = <>:{rha}
-
-%(($isv-sentsusa-baluli$ | $isv-esongezelelweyo-baluli$) "izibaluli.txt") | (($isv-sentsusa-baluli$$bu$ | $sabu$ | $bu$) "izibaluli.txt" )
 
 %Izimnini
 $1a_and_2a$ = <>:<> (\
@@ -118,8 +116,6 @@ $isimn-soqobo-b$ = <>:<>  (\
 	{<>}:{ikho} |\
 	{<>}:{inu})
 
-%$isv-sentsusa-mnini$$isimn-soqobo$
-
 %izimnini ezakhiwe kwisimelabizo sokwalatha
 %"izimnini_zokwalatha.txt"
 
@@ -128,14 +124,8 @@ $izimnini-zoquko$ = <>:<> (\
 	{<>}:{dwa} |\
 	{<>}:{nke})
 
-%$isv-sentsusa-mnini$$izimnini-zoquko$
-
-%Izimnini ezakhiwe kwiziphawuli
-%$isv-sentsusa-mnini$ "iziphawuli.txt"
-
 %Izimnini ezakhiwe kwizimnini e.g wesamadoda, kweyezikolo
 %$isv-sentsusa-mnini$+ isimnini
-
 
 %recognising izimnini zezibizo zika class 1a and 2a
 ALPHABET = [a-z]
@@ -148,22 +138,34 @@ $<4_consonants$ = ![a-z]*($non-vowels$$non-vowels$$non-vowels$($non-vowels$)+)[a
 %Define a rule that does not allow more than two consecutive vowels
 $<2_vowels$ = ![a-z]*($vowels$($vowels$)+)[a-z]*
 
-$1a_and_2a$($<4_consonants$&$<2_vowels$)(a|e|i|o|u)
-
-
-
 %Izichazi Zokukumbi
 $mbi-phi$ = <>:<> (\
 	{<>}:{mbi} |\
 	{<>}:{phi})
 
-$isv-sentsusa-baluli$$mbi-phi$ %izivumelanisi zika mbi no phi zifana nqwa nezezibaluli
+%These are sometimes izimaphambili for amahlelo abuthakatha
+$abuthakathaka$ = <>:<> (\
+	{<>}:{yi} |\
+	{<>}:{wu} |\
+	{<>}:{wa})
 
 $nye-ni$ = <>:<> (\
 	{<>}:{nye} |\
 	{<>}:{ni})
 
-$issv-sentsusa$$nye-ni$ %izivumelanisi zika nye no ni zifana nqwa nezeziphawuli
+%Izichazi Zoquko
+$dwa-nke$ = <>:<> (\
+	{<>}:{dwa} |\
+	{<>}:{nke})
+
+$zoquko$ = <>:<> ({<>}:{so} | {<>}:{bo} | {<>}:{zo} | {<>}:{ko})
+
+(($isv-esongezelelweyo$ | $issv-sentsusa$ | $nga$) "iziphawuli.txt") |\
+ (((($isv-sentsusa-baluli$($nga-nge$)?) | $isv-esongezelelweyo-baluli$) "izibaluli.txt") | (($isv-sentsusa-baluli$$bu$ | $sabu$ | $bu$) "izibaluli.txt")) |\
+(($isv-sentsusa-mnini$$isimn-soqobo$) | ($isv-sentsusa-mnini$$izimnini-zoquko$) | ($isv-sentsusa-mnini$ "iziphawuli.txt") | $1a_and_2a$($<4_consonants$&$<2_vowels$)(a|e|i|o|u)) |\
+((($abuthakathaka$ | $isv-sentsusa-baluli$)$mbi-phi$) | ($issv-sentsusa$$nye-ni$)) |\
+$zoquko$$dwa-nke$
+
 
 
 
