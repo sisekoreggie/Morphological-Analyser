@@ -22,13 +22,13 @@ public class SpellChecker {
     			        Scanner s2 = new Scanner(sc2.nextLine());
     			    while (s2.hasNext()) {
     			        String s = s2.next();
-				s = (s.replaceAll("[,.()]", "")).toLowerCase();
+				s = (s.replaceAll("[,.()%]", "")).toLowerCase();
 				out.println(String.format(s));
     			    }
     			}
 			out.close();
 
-			Process p = Runtime.getRuntime().exec("fst-infl tester.a input.txt output.txt");
+			Process p = Runtime.getRuntime().exec("fst-infl nouns.a input.txt output.txt");
 			p.waitFor(); 
 
 			//Reading the output of the programme from a file and then printing out the misspelled words
