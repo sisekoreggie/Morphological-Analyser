@@ -16,36 +16,77 @@ $double_rule$ = !([a-z]*($double_consonent$)[a-z]*)
 
 %Define a rule that does not allow more than two consecutive vowels
 $<2_vowels$ = ![a-z]*($vowels$($vowels$)+)[a-z]*
+	   
+%Copulative Concords which are added in front of the noun class prefix : Page 23 of Speak Xhosa with us beginner to advanced
+$ng$ = <>:<> ({<>}:{ng}) 		%1a, 1, 3, 2, 2a, 6
+$yi$ = <>:<> ({<>}:{y}) 		%4, 9
+$li$ = <>:<> ({<>}:{l})			%5
+$si$ = <>:<> ({<>}:{s})			%7
+$zi$ = <>:<> ({<>}:{z})			%8, 10
+$lu$ = <>:<> ({<>}:{l})			%11
+$bu$ = <>:<> ({<>}:{b})			%14
+$ku$ = <>:<> ({<>}:{k})			%15
 
-%Basic noun rules
-$ihlelo_1$ = um($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u)		%1 related plural forms sometimes found in 2,4 and 6
-$ihlelo_2$ = ab(a|e)($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%2
-$ihlelo_1a$ = u($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u)		%1A
-$ihlelo_2a$ = oo($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 		%2A
-$ihlelo_3$ = u(m)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%3
-$ihlelo_4$ = im(e|i)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%4
-$ihlelo_5$ = i(li)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u)  	%5
-$ihlelo_6$ = am(a)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u)  	%6
-$ihlelo_7$ = is(a|i)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%7
-$ihlelo_8$ = iz(a|i)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%8
-$ihlelo_9$ = i(n|m)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%9
-$ihlelo_10$ = i(i(n|m)?|zi(n|m))($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%10
-$ihlelo_11$ = u(l|lu|lw)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u)		%11
-$ihlelo_14$ = u(b|bu|ty|tyw)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u) 	%14
-$ihlelo_15$ = uk(u|w)?($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)a 			%15
+%Copulative Concords which are added in front of the noun class prefix and make the noun class prefix to lose the initial vowel
+$asingo$ = <>:<> ({<>}:{asingo})        %1a, 1, 3, 2, 2a, 6
+$asiyo$ = <>:<> ({<>}:{asiyo}) 		%4, 9
+$asilo$ = <>:<> ({<>}:{asilo}) 		%5
+$asiso$ = <>:<> ({<>}:{asiso}) 		%7
+$asizo$ = <>:<> ({<>}:{asizo}) 		%8, 10
+$asilo$ = <>:<> ({<>}:{asilo}) 		%11
+$asibo$ = <>:<> ({<>}:{asibobu}) 		%14
+$asiko$ = <>:<> ({<>}:{asikoku} | {<>}:{asikokw}) 		%15
 
-%Compound noun rules
-%isibizo1+isibizo2 = (pref1+root1+suffix1)+(root1+suffix1)
-$coumpound_1$ = ($non-vowels$)($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u)  
+%Stems for the noun classes
+$stem$ = ($<4_consonants$&$<2_vowels$&$double_rule$)($non-vowels$)(a|e|i|o|u)
 
-%isibizo+isimelabizo: Remove the ending 'na' in isimelabizo zoqobo
-$esoqobo$ = <>:<> ({<>}:{m} | {<>}:{we}| {<>}:{thi} | {<>}:{ni} | {<>}:{yo} | {<>}:{so} | {<>}:{zo} | {<>}:{lo} |\
-		{<>}:{bo} | {<>}:{wo} | {<>}:{ko} | {<>}:{ye} | {<>}:{bo} | {<>}:{lo} | {<>}:{wo})
+%Noun class prefixes
+$ihlelo_1$ = (um)$stem$		%1 related plural forms sometimes found in 2,4 and 6
+$ihlelo_2$ = (aba|abe)$stem$	 	%2
+$ihlelo_1a$ = u$stem$			%1A
+$ihlelo_2a$ = (oo)$stem$		%2A
+$ihlelo_3$ = (um|u)$stem$		%3
+$ihlelo_4$ = (imi|im)$stem$	 	%4
+$ihlelo_5$ = (ili|i)$stem$		%5
+$ihlelo_6$ = (ama|ame)$stem$			  	%6
+$ihlelo_7$ = (isi|(is(a|o|e)))$stem$		 	%7
+$ihlelo_8$ = (izi|iza)$stem$		 		%8
+$ihlelo_9$ = (in|im|i)$stem$		 		%9
+$ihlelo_10$ =  (izin|izim|iin|iim|ii)$stem$		%10
+$ihlelo_11$ = (ulu|ulw|ul|u)$stem$			%11
+$ihlelo_14$ =  (Ubu|utyw|uty|ubu|ub|u)$stem$		%14
+$ihlelo_15$ = (uku|ukw|uk)$stem$		 	%15
 
-%Combining the rules for recognition
-$ihlelo_1$ ($coumpound_1$) |\
-($ihlelo_1$ | $ihlelo_1a$ | $ihlelo_2$ | $ihlelo_2a$ | $ihlelo_3$ | $ihlelo_4$ | $ihlelo_5$ | $ihlelo_6$ | $ihlelo_7$ | $ihlelo_8$ | $ihlelo_9$ | $ihlelo_10$ | $ihlelo_11$ | $ihlelo_14$ | $ihlelo_15$) ($esoqobo$)? ("iziphawuli.txt")?
+%Using 'na' to express possession
+%Subject Concords for nouns
+$sc$ = <>:<> (\
+		  {<>}:{u} | {<>}:{ndi}|\ %class 1a nd 1
+		  {<>}:{ba} |\ 		%class 2a nd 2
+		  {<>}:{u} |\ 		%class 3
+		  {<>}:{i} |\ 		%class 4 and 9
+		  {<>}:{li} |\ 		%class 5
+		  {<>}:{a} |\		%class 6
+		  {<>}:{si} |\		%class 7
+		  {<>}:{zi} |\	 	%class 8 and 10
+		  {<>}:{lu} |\ 		%class 11
+		  {<>}:{bu} |\ 		%class 14
+		  {<>}:{ku}) 		%class 15
 
+$p-na$ = <>:<> ({<>}:{ne} | {<>}:{no} | {<>}:{noo} | {<>}:{na} | {<>}:{nee})
+
+%===============================================================================
+
+%The Adverbal Formative 'Nga'
+
+$ad_nga$ = <>:<> ({<>}:{nge} | {<>}:{ngo} | {<>}:{nga} | {<>}:{ngoo} | {<>}:{ngee})
+
+%===============================================================================
+
+$ad_nga$ $stem$ |\		%The Adverbal Formative 'Nga'
+$sc$$p-na$$stem$ |\		%these are the rules for using 'na' to express possession
+($asingo$ | $asiyo$ | $asilo$ | $asiso$ | $asizo$ | $asilo$ | $asibo$ | $asiko$)$stem$ |\
+($ng$$ihlelo_1$ | $ng$$ihlelo_1a$ | $ng$$ihlelo_2$ | $ng$$ihlelo_2a$ | $ng$$ihlelo_3$ | $yi$$ihlelo_4$ | $li$$ihlelo_5$ | $ng$$ihlelo_6$ | $si$$ihlelo_7$ | $zi$$ihlelo_8$ | $yi$$ihlelo_9$ | $zi$$ihlelo_10$ | $lu$$ihlelo_11$ | $bu$$ihlelo_14$ | $ku$$ihlelo_15$) |\
+($ihlelo_1$ | $ihlelo_1a$ | $ihlelo_2$ | $ihlelo_2a$ | $ihlelo_3$ | $ihlelo_4$ | $ihlelo_5$ | $ihlelo_6$ | $ihlelo_7$ | $ihlelo_8$ | $ihlelo_9$ | $ihlelo_10$ | $ihlelo_11$ | $ihlelo_14$ | $ihlelo_15$)
 
 
 

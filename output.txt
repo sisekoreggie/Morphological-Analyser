@@ -1,78 +1,30 @@
-> wophononongo
-no result for wophononongo
-> abasyi
-abasyi
-> kwazi
-no result for kwazi
-> ukuba
-ukuba
-> umntwana
-umntwana
-> ngamnye
-no result for ngamnye
-> wabelwe
-no result for wabelwe
-> kweliphi
-no result for kweliphi
-> na
-no result for na
-> iqela
-iqela
-> okanye
-no result for okanye
-> nokuba
-no result for nokuba
-> ufumana
-ufumana
-> iyeza
-iyeza
-> eliphandwayo
-no result for eliphandwayo
-> okanye
-no result for okanye
-> usingayeza
-usingayeza
-> na
-no result for na
-> abathathi-nxaxheba
-no result for abathathi-nxaxheba
-> abathatha
-abathatha
-> i-metformin
-no result for i-metformin
-> eselwa
-no result for eselwa
-> ngomlomo
-no result for ngomlomo
-> okanye
-no result for okanye
-> i-sulfonylurea
-no result for i-sulfonylurea
-> yohlobo
-no result for yohlobo
-> lwesi-2
-no result for lwesi-2
-> lesifo
-no result for lesifo
-> seswekile
-no result for seswekile
-> kungoku
-no result for kungoku
-> nje
-no result for nje
-> baya
-no result for baya
-> kuqhubeka
-no result for kuqhubeka
-> bewathatha
-no result for bewathatha
-> lo
-no result for lo
-> mayeza
-no result for mayeza
-> ixesha
-ixesha
-> lonke
-no result for lonke
-> lophononongo
-no result for lophononongo
+> yakhe
+
+> yakho
+
+> lakhe
+
+> kwabo
+
+> lenu
+
+> yam
+
+> yakho
+
+> kwakhe
+
+> kwakho
+
+> lakho
+
+> lakh
+no result for lakh
+> eyethu
+no result for eyethu
+> okona
+no result for okona
+> abona
+no result for abona
+> elona
+no result for elona

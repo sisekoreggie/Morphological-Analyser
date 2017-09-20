@@ -1,4 +1,6 @@
 %Iziphawuli
+%Iziphawuli are called adjectives and their prefixes are called 'adjective concords'
+%Descriptive corpulative concords
 $issv-sentsusa$ = <>:<> (\
 	{<>}:{m} |\
 	{<>}:{ba} |\
@@ -14,6 +16,7 @@ $issv-sentsusa$ = <>:<> (\
 	{<>}:{bu} |\
 	{<>}:{ku})
 
+%noun prefix when combined with 'a' they become the following 'adjective concords'
 $isv-esongezelelweyo$ = <>:<> (\
 	{<>}:{om} |\
 	{<>}:{aba} |\
@@ -161,7 +164,7 @@ $dwa-nke$ = <>:<> (\
 $zoquko$ = <>:<> ({<>}:{so} | {<>}:{bo} | {<>}:{zo} | {<>}:{ko})
 
 (($isv-esongezelelweyo$ | $issv-sentsusa$ | $nga$) "iziphawuli.txt") |\
- (((($isv-sentsusa-baluli$($nga-nge$)?) | $isv-esongezelelweyo-baluli$) "izibaluli.txt") | (($isv-sentsusa-baluli$$bu$ | $sabu$ | $bu$) "izibaluli.txt")) |\
+ (((($isv-sentsusa-baluli$($nga-nge$)?) | $isv-esongezelelweyo-baluli$)? "izibaluliiziphawuli.txt") | (($isv-sentsusa-baluli$$bu$ | $sabu$ | $bu$) "izibaluli.txt")) |\
 (($isv-sentsusa-mnini$$isimn-soqobo$) | ($isv-sentsusa-mnini$$izimnini-zoquko$) | ($isv-sentsusa-mnini$ "iziphawuli.txt") | $1a_and_2a$($<4_consonants$&$<2_vowels$)(a|e|i|o|u)) |\
 ((($abuthakathaka$ | $isv-sentsusa-baluli$)$mbi-phi$) | ($issv-sentsusa$$nye-ni$)) |\
 $zoquko$$dwa-nke$
