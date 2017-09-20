@@ -82,6 +82,26 @@ $ad_nga$ = <>:<> ({<>}:{nge} | {<>}:{ngo} | {<>}:{nga} | {<>}:{ngoo} | {<>}:{nge
 
 %===============================================================================
 
+%Basic Noun Prefixes
+$basic_np$ = <>:<> (\
+		  {<>}:{m} |\ 		%class 1, 1a and 3
+		  {<>}:{ba} |\ 		%class 2
+		  {<>}:{bo} |\          %class 2a
+		  {<>}:{mi} |\ 		%class 4
+		  {<>}:{li} |\ 		%class 5
+		  {<>}:{ma} |\		%class 6
+		  {<>}:{si} |\		%class 7
+		  {<>}:{zi} |\	 	%class 8 
+		  {<>}:{n} |\ 		%class 9
+		  {<>}:{zin} |\	 	%class 10
+		  {<>}:{lu} |\ 		%class 11
+		  {<>}:{bu} |\ 		%class 14
+		  {<>}:{ku}) 		%class 15
+
+%$basic_np$ $stem$ |\
+%These cause overgeneration and thus decreases our spelling checker accuracy
+%===============================================================================
+
 $ad_nga$ $stem$ |\		%The Adverbal Formative 'Nga'
 $sc$$p-na$$stem$ |\		%these are the rules for using 'na' to express possession
 ($asingo$ | $asiyo$ | $asilo$ | $asiso$ | $asizo$ | $asilo$ | $asibo$ | $asiko$)$stem$ |\
