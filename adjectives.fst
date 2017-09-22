@@ -32,7 +32,19 @@ $isv-esongezelelweyo$ = <>:<> (\
 	{<>}:{obu} |\
 	{<>}:{oku})
 
+$init$ = <>:<> ({<>}:{si} | {<>}:{ni} | {<>}:{be} | {<>}:{e}) % These are prefixes which can be added before the subject concords combined with "nge"
+$init_b$ = <>:<> ({<>}:{ku} | {<>}:{lu} | {<>}:{bu} | {<>}:{a} | {<>}:{ba}) % These are prefixes which can be added before the subject concords combined with "nga"
+
+$nge$ = <>:<> ({<>}:{nge})
 $nga$ = <>:<> ({<>}:{nga})
+
+%These are for the first 6 numbers
+$num$ = <>:<> ({<>}:{nye}|{<>}:{bini}|{<>}:{thathu}|{<>}:{ne}|{<>}:{hlanu}|{<>}:{thandathu})
+$all$ = <>:<> ({<>}:{ama}|{<>}:{kwama}|{<>}:{zezi}|{<>}:{aba}|{<>}:{isi}|{<>}:{lesi}|{<>}:{oma}|{<>}:{sesi})
+$nye_rt$ = <>:<> ({<>}:{nye})
+$nye$ = <>:<> ({<>}:{ngasi}|{<>}:{nge}|{<>}:{nga}|{<>}:{kwe}|{<>}:{kwezi}|{<>}:{kwaba}|{<>}:{kuma}|{<>}:{ngama})
+
+%=====================================================================================================================================
 
 %Izibaluli
 $isv-sentsusa-baluli$ = <>:<> (\
@@ -68,6 +80,9 @@ $isv-esongezelelweyo-baluli$ = <>:<> (\
 	{<>}:{olu} |\ %ihlelo_11
 	{<>}:{obu} |\ %ihlelo_14
 	{<>}:{oku}) %ihlelo_15
+
+$isv_bl$ = <>:<> ({<>}:{ku}|{<>}:{bu}|{<>}:{ba})
+$has_o$ = <>:<> ({<>}:{ko}|{<>}:{bo}|{<>}:{ngo}|{<>}:{no})
 
 $nga-nge$ = <>:<> ({<>}:{nga} | {<>}:{nge})
 
@@ -163,11 +178,14 @@ $dwa-nke$ = <>:<> (\
 
 $zoquko$ = <>:<> ({<>}:{so} | {<>}:{bo} | {<>}:{zo} | {<>}:{ko})
 
-(($isv-esongezelelweyo$ | $issv-sentsusa$ | $nga$) "iziphawuli.txt") |\
- (((($isv-sentsusa-baluli$($nga-nge$)?) | $isv-esongezelelweyo-baluli$)? "izibaluliiziphawuli.txt") | (($isv-sentsusa-baluli$$bu$ | $sabu$ | $bu$) "izibaluli.txt")) |\
+((($isv-esongezelelweyo$ | $issv-sentsusa$ | $nga$ | $init$($nge$|$nga$)?$issv-sentsusa$ | $init_b$($nga$)?$issv-sentsusa$) "iziphawuli.txt") |\
+ (((($isv-sentsusa-baluli$($nga-nge$)?) | $isv-esongezelelweyo-baluli$)? "izibaluli.txt") | (($isv-sentsusa-baluli$$bu$ | $sabu$ | $bu$) "izibaluli.txt")) |\
+($isv-esongezelelweyo-baluli$($has_o$)?)?$isv_bl$ | ($has_o$)?($isv-sentsusa-baluli$|$isv_bl$)($has_o$)? | ($has_o$)?$isv_bl$$isv-sentsusa-baluli$ | (($isv-sentsusa-baluli$|$isv-esongezelelweyo-baluli$)($has_o$)?($isv_bl$)?)) "izibaluli.txt" |\  % These are the newly added rules
 (($isv-sentsusa-mnini$$isimn-soqobo$) | ($isv-sentsusa-mnini$$izimnini-zoquko$) | ($isv-sentsusa-mnini$ "iziphawuli.txt") | $1a_and_2a$($<4_consonants$&$<2_vowels$)(a|e|i|o|u)) |\
 ((($abuthakathaka$ | $isv-sentsusa-baluli$)$mbi-phi$) | ($issv-sentsusa$$nye-ni$)) |\
-$zoquko$$dwa-nke$
+$zoquko$$dwa-nke$ |\
+$all$$num$ | $nye$$nye_rt$  	%For numbers
+
 
 
 

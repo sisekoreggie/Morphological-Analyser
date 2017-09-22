@@ -13,6 +13,9 @@ $p_concord$ = <>:<> (\
 
 $p_stems1$ = <>:<> ({<>}:{m} | {<>}:{kho} | {<>}:{khe} | {<>}:{bo})
 
+%Corpulative Concords (Corpulatives with possessive pronouns)
+$cc$ = <>:<> ({<>}:{yeya}|{<>}:{lela}|{<>}:{boba}|{<>}:{sesa}|{<>}:{zeza}|{<>}:{kokwa}|{<>}:{lolwa}|{<>}:{ngowa})
+
 $possessives$ = <>:<> (\
 		  {<>}:{wethu}  | {<>}:{wenu} |\ 	%class 1a, 1 and 3
 		  {<>}:{bethu} | {<>}:{benu}|\ 		%class 2a and 2
@@ -33,11 +36,8 @@ $pos_pro$ = <>:<> ({<>}:{bam} | {<>}:{wam} | {<>}:{wethu} | {<>}:{wabo})
 $pos_pref$ = <>:<> ({<>}:{a} | {<>}:{o})
 $pos_pref_e$ = <>:<> ({<>}:{e})
 
-%Corpulatives with possessive pronouns
-%$pr$ = <>:<> ({<>}:{ye} | {<>}:{le} | {<>}:{bo} | {<>}:{se} | {<>}:{ze} | {<>}:{ko})
 
-
-($pos_pref$$pos_pro$ | $pos_pref_e$$pos_pro_y$) |\ %Posessive pronouns
+($pos_pref$$pos_pro$ | $pos_pref_e$$pos_pro_y$ | $cc$$p_stems1$) |\ %Posessive pronouns
 $possessives$ | $p_concord$$p_stems1$
 
 

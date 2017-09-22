@@ -4,6 +4,7 @@ import java.util.*;
 public class SpellChecker {
 	public static void main(String[] args) {
 		try {
+			final long startTime = System.currentTimeMillis();
 			int numOfWords = 0;
 			Scanner sc2 = null;
     			try {
@@ -30,7 +31,7 @@ public class SpellChecker {
     			}
 			out.close();
 
-			Process p = Runtime.getRuntime().exec("fst-infl possessives.a input.txt output.txt");  //Change this line to the appropriate file that you wanna use for your testing
+			Process p = Runtime.getRuntime().exec("fst-infl nouns.a input.txt output.txt");  //Change this line to the appropriate file that you wanna use for your testing
 			p.waitFor(); 
 
 			//Reading the output of the programme from a file and then printing out the misspelled words
@@ -42,12 +43,16 @@ public class SpellChecker {
 			int unrecognisedWords = 0;
 			while ((strLine = br.readLine()) != null)   {
 				//System.out.println("In while");
+				if (!(strLine.contains("no result for")||(strLine.contains(">")))) {System.out.println(prevStr);}
 				if (strLine.contains("no result for")) {
-					System.out.println(prevStr);
+					//System.out.println(prevStr);
 					unrecognisedWords+=1;
 				}
 				prevStr = strLine.replaceAll("[> ]", "");
 			}
+			final long endTime = System.currentTimeMillis();
+			System.out.println("==================================================");
+			System.out.println("Total execution time: " +(endTime-startTime) );
 			System.out.println("The input file has "+(numOfWords)+" raw words");
 			System.out.println("There are "+(unrecognisedWords)+" incorrect words");
 			br.close();
