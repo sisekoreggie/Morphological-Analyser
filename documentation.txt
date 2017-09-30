@@ -1,0 +1,9 @@
+This is an isiXhosa spelling error detector.
+
+To use the program follow the following steps:
+
+Type or paste any text in the text area, then after that.
+if you want to check for all incorrectly spelled words in the text click the "Show All Errors" button
+otherwise if you want to display one error at a time click the "Show Next Error" button
+
+The error detector 
