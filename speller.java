@@ -34,6 +34,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -46,9 +47,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class speller implements ActionListener {	
-	//private static final long serialVersionUID = 1L;
-	//JTextArea window;
+public class speller implements ActionListener {
+	/* Initialising variables, buttons and the JFrame window */	
 	JFrame window = new JFrame();
 	JMenuBar menuBar;
 	JMenu fileMenu, editMenu, helpMenu;
@@ -56,8 +56,6 @@ public class speller implements ActionListener {
 	
 	JTextArea userInput = new JTextArea(10, 20);
 	JScrollPane scrollpane = new JScrollPane(userInput);
-	//	JScrollPane scrollpane = new JScrollPane(userInput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
 
 	JLabel instruction = new JLabel("Type, upload a file or paste text in the text area below");
 	String lang = "isiXhosa";
@@ -79,7 +77,7 @@ public class speller implements ActionListener {
 	HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.PINK);
 	ArrayList<String> all = new ArrayList<>();
 	    
-	    
+	ImageIcon newIcon = new ImageIcon("uct_logo.jpg");
 	JPanel pane = new JPanel();
 	
 	public speller() {
@@ -87,8 +85,6 @@ public class speller implements ActionListener {
 	}
 
 	private void initComponent() {
-		//userInput.setPreferredSize(new Dimension(450, 110));
-		
 		JPanel panel = new JPanel();
 		GroupLayout layout = new GroupLayout(panel);
 		window.setSize(800, 600);	
@@ -97,20 +93,15 @@ public class speller implements ActionListener {
 		panel.setLayout(layout);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
-
-		//checkText.addActionListener(this); //Action when the button is clicked
 		
-        instruction.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        instruction.setForeground(new java.awt.Color(0, 0, 255));
-        //instruction.setText("To begin: Type or paste text below or Click File->Open File... to load a file");
-        instruction.setDoubleBuffered(true);
+        	instruction.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        	instruction.setForeground(new java.awt.Color(0, 0, 255));
+       		instruction.setDoubleBuffered(true);
 		
 		window.setTitle("                                             IsiXhosa Spelling Checker");
-
-		//window.setLocation(new java.awt.Point(200, 50));
-		//window.setMinimumSize(new java.awt.Dimension(700, 580));
-
-		
+		//window.setResizable(false); 	//window unable to resize
+		Image logoStart = newIcon.getImage();
+		window.setIconImage(logoStart);
 		/* Menu Bar */
 		menuBar = new JMenuBar();
 		
@@ -149,12 +140,6 @@ public class speller implements ActionListener {
 		menuBar.add(helpMenu);
 		
 		window.setJMenuBar(menuBar);
-		
-		//selectLanguage.setSelectedIndex(4);
-		//selectLanguage.addActionListener(this);
-		
-		//selectLanguage.setSelectedIndex(4);
-		//selectLanguage.setPreferredSize(new Dimension(140,40));
 	    
 		pane.setBorder(BorderFactory.createEtchedBorder());
 		userInput.setLineWrap(true);
@@ -165,9 +150,8 @@ public class speller implements ActionListener {
 		checkOnce.addActionListener(this);
 		checkText.addActionListener(this);
 		
-		//window.highlight(userInput, "untu");
 	    
-	    layout.setHorizontalGroup(
+	    	layout.setHorizontalGroup(
 	    		   layout.createSequentialGroup()
 	    		      .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 	    		    		  .addComponent(instruction)
@@ -176,9 +160,7 @@ public class speller implements ActionListener {
 	    		    		      		.addComponent(language)
 	    		    		      		.addComponent(selectLanguage))
 	    	    		      )
-	    		    		  //.addComponent(language))
 	    		      .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-	    		    	   //.addComponent(pane, GroupLayout.DEFAULT_SIZE, 200, GroupLayout.DEFAULT_SIZE)
 	    		    	   .addComponent(logo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	    		    	   .addComponent(checkOnce, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	    		           .addComponent(blank)
@@ -200,7 +182,6 @@ public class speller implements ActionListener {
 	    		    				  .addComponent(selectLanguage))
 	    		    		  )
 	    		      .addGroup(layout.createSequentialGroup()
-	    		    		//.addComponent(pane, GroupLayout.DEFAULT_SIZE, 200, GroupLayout.DEFAULT_SIZE)
 	    		      		.addComponent(logo)
 	    		      		.addComponent(checkOnce)
 	    		      		.addComponent(blank)
@@ -344,8 +325,8 @@ public class speller implements ActionListener {
 					+ "the isiXhosa rule-based error detector.\n\n"
 					+ "Developed at the University of Cape Town as an\n"
 					+ "Honoours project under the supervision of Dr Maria Keet\n\n"
-					+ "Developed by Siseko Neti\n\n"
-					+ "\u00a9 Copyright 2017");
+					+ "Interface from the isiZulu spellchecker by Norman Pilusa\n\n"
+					+ "Developed by Siseko Neti\n\n");
 		}
 	}
 
