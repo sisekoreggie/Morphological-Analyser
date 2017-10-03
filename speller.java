@@ -47,13 +47,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.text.DefaultEditorKit;
+
 public class speller implements ActionListener {	
 	//private static final long serialVersionUID = 1L;
 	//JTextArea window;
 	JFrame window = new JFrame();
 	JMenuBar menuBar;
 	JMenu fileMenu, editMenu, helpMenu;
-	JMenuItem newItem, openItem, saveItem, help, about, copy, paste;
+	JMenuItem newItem, openItem, saveItem, help, about, copy, paste, cut;
 	
 	JTextArea userInput = new JTextArea(10, 20);
 	JScrollPane scrollpane = new JScrollPane(userInput);
@@ -138,9 +140,17 @@ public class speller implements ActionListener {
 		
 		copy = new JMenuItem("Copy");
 		paste = new JMenuItem("Paste");
+		cut = new JMenuItem("Cut");
 		
+		editMenu.add(cut);
+		cut.addActionListener(this);
 		editMenu.add(copy);
+		copy.addActionListener(this);
 		editMenu.add(paste);
+		paste.addActionListener(this);
+        	copy.addActionListener(new DefaultEditorKit.CopyAction());
+		paste.addActionListener(new DefaultEditorKit.PasteAction());
+		cut.addActionListener(new DefaultEditorKit.CutAction());
 		
 		about = new JMenuItem("About");
 		help = new JMenuItem("Help");
@@ -269,7 +279,7 @@ public class speller implements ActionListener {
 	public void documentationButton() {
 		if (Desktop.isDesktopSupported()) {
 		    try {
-		        File myFile = new File("C:\\Users\\Siseko\\eclipse-workspace\\SpellChecker\\src\\documentation.txt");
+		        File myFile = new File("documentation.txt");
 		        Desktop.getDesktop().open(myFile);
 		    } catch (Exception ex) {
 		    	JOptionPane.showMessageDialog(null, ex+"");
@@ -295,7 +305,6 @@ public class speller implements ActionListener {
 
                 //iterate through words
                 for (String word : words) {
-                    System.out.println(word);
                     if (!isCorrect(word)) {	//incorrect word
                         start = text.indexOf(word, position);
                         end = start + word.length();
@@ -354,13 +363,8 @@ public class speller implements ActionListener {
 		String strLine, prevStr = "";
 		while ((strLine = br.readLine()) != null)   {
 			//System.out.println("In while");
-			if (!(strLine.contains("no result for")||(strLine.contains(">")))) 				{	System.out.println(prevStr);
-				value = true;
+			if (!(strLine.contains("no result for")||(strLine.contains(">")))) 				{    value = true;
 			}
-			/*if (strLine.contains("no result for")) {
-				//System.out.println(prevStr);
-				unrecognisedWords+=1;
-			}*/
 			prevStr = strLine.replaceAll("[> ]", "");
 		}
 		
