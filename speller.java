@@ -1,4 +1,5 @@
-
+import java.io.*;
+import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
@@ -34,7 +35,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -47,8 +47,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class speller implements ActionListener {
-	/* Initialising variables, buttons and the JFrame window */	
+public class speller implements ActionListener {	
+	//private static final long serialVersionUID = 1L;
+	//JTextArea window;
 	JFrame window = new JFrame();
 	JMenuBar menuBar;
 	JMenu fileMenu, editMenu, helpMenu;
@@ -56,6 +57,8 @@ public class speller implements ActionListener {
 	
 	JTextArea userInput = new JTextArea(10, 20);
 	JScrollPane scrollpane = new JScrollPane(userInput);
+	//	JScrollPane scrollpane = new JScrollPane(userInput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
 
 	JLabel instruction = new JLabel("Type, upload a file or paste text in the text area below");
 	String lang = "isiXhosa";
@@ -68,7 +71,12 @@ public class speller implements ActionListener {
 	JButton checkOnce = new JButton("Show Next");
 	JLabel blank = new JLabel();
 	FileWriter fileWriter; 
-	
+
+
+	String currWord = " ";
+	int sentNo = 0;
+	int wordNo = 0;
+	int pos = 0;
 	Icon icon = new ImageIcon(getClass().getResource("uct_logo.jpg")); 
 	JLabel logo = new JLabel(icon);
 	
@@ -77,7 +85,7 @@ public class speller implements ActionListener {
 	HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.PINK);
 	ArrayList<String> all = new ArrayList<>();
 	    
-	ImageIcon newIcon = new ImageIcon("uct_logo.jpg");
+	    
 	JPanel pane = new JPanel();
 	
 	public speller() {
@@ -85,6 +93,8 @@ public class speller implements ActionListener {
 	}
 
 	private void initComponent() {
+		//userInput.setPreferredSize(new Dimension(450, 110));
+		
 		JPanel panel = new JPanel();
 		GroupLayout layout = new GroupLayout(panel);
 		window.setSize(800, 600);	
@@ -93,15 +103,20 @@ public class speller implements ActionListener {
 		panel.setLayout(layout);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
+
+		//checkText.addActionListener(this); //Action when the button is clicked
 		
-        	instruction.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        	instruction.setForeground(new java.awt.Color(0, 0, 255));
-       		instruction.setDoubleBuffered(true);
+        instruction.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        instruction.setForeground(new java.awt.Color(0, 0, 255));
+        //instruction.setText("To begin: Type or paste text below or Click File->Open File... to load a file");
+        instruction.setDoubleBuffered(true);
 		
 		window.setTitle("                                             IsiXhosa Spelling Checker");
-		//window.setResizable(false); 	//window unable to resize
-		Image logoStart = newIcon.getImage();
-		window.setIconImage(logoStart);
+
+		//window.setLocation(new java.awt.Point(200, 50));
+		//window.setMinimumSize(new java.awt.Dimension(700, 580));
+		
+		
 		/* Menu Bar */
 		menuBar = new JMenuBar();
 		
@@ -140,6 +155,12 @@ public class speller implements ActionListener {
 		menuBar.add(helpMenu);
 		
 		window.setJMenuBar(menuBar);
+		
+		//selectLanguage.setSelectedIndex(4);
+		//selectLanguage.addActionListener(this);
+		
+		//selectLanguage.setSelectedIndex(4);
+		//selectLanguage.setPreferredSize(new Dimension(140,40));
 	    
 		pane.setBorder(BorderFactory.createEtchedBorder());
 		userInput.setLineWrap(true);
@@ -150,8 +171,9 @@ public class speller implements ActionListener {
 		checkOnce.addActionListener(this);
 		checkText.addActionListener(this);
 		
+		//window.highlight(userInput, "untu");
 	    
-	    	layout.setHorizontalGroup(
+	    layout.setHorizontalGroup(
 	    		   layout.createSequentialGroup()
 	    		      .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 	    		    		  .addComponent(instruction)
@@ -160,7 +182,9 @@ public class speller implements ActionListener {
 	    		    		      		.addComponent(language)
 	    		    		      		.addComponent(selectLanguage))
 	    	    		      )
+	    		    		  //.addComponent(language))
 	    		      .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+	    		    	   //.addComponent(pane, GroupLayout.DEFAULT_SIZE, 200, GroupLayout.DEFAULT_SIZE)
 	    		    	   .addComponent(logo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	    		    	   .addComponent(checkOnce, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	    		           .addComponent(blank)
@@ -182,6 +206,7 @@ public class speller implements ActionListener {
 	    		    				  .addComponent(selectLanguage))
 	    		    		  )
 	    		      .addGroup(layout.createSequentialGroup()
+	    		    		//.addComponent(pane, GroupLayout.DEFAULT_SIZE, 200, GroupLayout.DEFAULT_SIZE)
 	    		      		.addComponent(logo)
 	    		      		.addComponent(checkOnce)
 	    		      		.addComponent(blank)
@@ -252,7 +277,7 @@ public class speller implements ActionListener {
 		}
 	}
 	
-	/* Find the following word */
+	/* Find the following words */
     private void findWords() {      
         String text = userInput.getText();
         highlighter = userInput.getHighlighter();
@@ -271,7 +296,7 @@ public class speller implements ActionListener {
                 //iterate through words
                 for (String word : words) {
                     System.out.println(word);
-                    if ((word.equals("umntwna") || word.equals("uyfunda") || word.equals("wnza"))) {//incorrect word
+                    if (!isCorrect(word)) {	//incorrect word
                         start = text.indexOf(word, position);
                         end = start + word.length();
                         highlighter.addHighlight(start, end, painter);
@@ -284,7 +309,7 @@ public class speller implements ActionListener {
                     words = sentences[sentence].split(" ");
                     //iterate through words
                     for (String word : words) {
-                        if ((word=="umntwna" || word=="uyfunda" || word.equals("wnza"))) {
+                        if (!isCorrect(word)) {
                             start = text.indexOf(word, position);
                             end = start + word.length();
                             highlighter.addHighlight(start, end, painter);
@@ -300,7 +325,128 @@ public class speller implements ActionListener {
         }
         highlightSet = true;
     }
-	
+	/* Method to read one word and tell whether it is correctly spelled or not */
+
+	public boolean isCorrect(String word) {
+		boolean value = false;
+	     try {
+		//Cleaning the previous input file
+		PrintWriter pw = new PrintWriter("input.txt");
+		pw.close();
+
+		File fout = new File("input.txt");
+		FileOutputStream fos = new FileOutputStream(fout);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+	 
+		//for (int i = 0; i < 1; i++) {
+			word = (word.replaceAll("[,.()%?!'-:;/|*#~+=]", " ")).toLowerCase();
+			bw.write(word);
+			//bw.newLine();
+		//}
+		bw.close();
+
+		Process p = Runtime.getRuntime().exec("fst-infl intergrated_system.a input.txt output.txt");  //Change this line to the appropriate file that you wanna use for your testing
+		p.waitFor(); 
+
+		FileInputStream fstream = new FileInputStream("output.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+			
+		String strLine, prevStr = "";
+		while ((strLine = br.readLine()) != null)   {
+			//System.out.println("In while");
+			if (!(strLine.contains("no result for")||(strLine.contains(">")))) 				{	System.out.println(prevStr);
+				value = true;
+			}
+			/*if (strLine.contains("no result for")) {
+				//System.out.println(prevStr);
+				unrecognisedWords+=1;
+			}*/
+			prevStr = strLine.replaceAll("[> ]", "");
+		}
+		
+		br.close();
+
+	    } catch (Exception x) {
+		JOptionPane.showMessageDialog(null, x+" speller");
+	    }
+		return value;
+		
+	}
+
+	/* Ignore once action performed */
+	public void ignoreOnceAction() {
+        	String text = userInput.getText();
+        	highlighter = userInput.getHighlighter();
+		highlighter.removeAllHighlights();
+            	String[] sentences = text.split("\n");
+		try {
+            		String[] words;
+            		int start = 0;
+            		int end = 0;
+            		boolean active = true;
+			    //Input is just a sentence or word
+			    if (sentences.length < 2) {
+				words = text.split(" ");
+
+				//iterate through words
+				for (int i = wordNo; i< words.length; i++) {
+				    String word = words[i];
+				    if (!isCorrect(word)) {	//incorrect word
+				        start = text.indexOf(word, pos);
+				        end = start + word.length();
+				        highlighter.addHighlight(start, end, painter);
+					currWord = text.substring(start, end);
+					pos += word.length();
+					wordNo +=1;
+					break;
+				    }
+				    wordNo+=1;
+				    pos += word.length() + 1;
+				}
+				//Input is a two or more lines
+			    } else {
+				while (sentNo < sentences.length && active) {
+				    words = sentences[sentNo].split(" ");
+				    //iterate through words
+				    for (int i = wordNo; i< words.length; i++) {
+					String word = words[i];
+				        if (!isCorrect(word)) {
+				            start = text.indexOf(word, pos);
+				            end = start + word.length();
+				            highlighter.addHighlight(start, end, painter);
+						currWord = text.substring(start, end);
+						pos += word.length();
+						wordNo +=1;
+						active = false;
+						break;
+				   	 }
+				   	 wordNo+=1;
+				   	 pos += word.length() + 1;
+				     }
+
+				     if (wordNo >= words.length) {
+					wordNo = 0;
+					sentNo++;
+				     }
+				}
+
+			    }
+
+		} catch (Exception x) {
+			JOptionPane.showMessageDialog(null, x+" speller");
+	    	}
+		highlightSet = true;
+	}
+
+
+	/* Ignore all action performed */
+	public void ignoreAllAction() {
+        	String text = userInput.getText();
+        	highlighter = userInput.getHighlighter();
+		highlighter.removeAllHighlights();
+		highlightSet = true;
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == openItem) {
 			this.openItemButton();
@@ -318,15 +464,23 @@ public class speller implements ActionListener {
 			this.findWords();
 			//this.findWord();
 		}
-		
+		else if (e.getSource() == checkOnce) {
+			this.ignoreOnceAction();
+		}
+		else if (e.getSource() == ignoreOnce) {
+			this.ignoreOnceAction();
+		}
+		else if (e.getSource() == ignoreAll) {
+			this.ignoreAllAction();
+		}
 		else if (e.getSource() == about) {
 			JOptionPane.showMessageDialog(window, "Hello User\n\n"
 					+ "This interface was developed for testing purposes of \n"
 					+ "the isiXhosa rule-based error detector.\n\n"
 					+ "Developed at the University of Cape Town as an\n"
 					+ "Honoours project under the supervision of Dr Maria Keet\n\n"
-					+ "Interface from the isiZulu spellchecker by Norman Pilusa\n\n"
-					+ "Developed by Siseko Neti\n\n");
+					+ "Developed by Siseko Neti\n\n"
+					+ "\u00a9 Copyright 2017");
 		}
 	}
 

@@ -5,7 +5,7 @@ $esoqobo_a$ = <>:<> ({<>}:{bona} | {<>}:{wona})
 $esoqobo_o$ = <>:<> ({<>}:{kona} | {<>}:{yena} | {<>}:{bona} | {<>}:{lona} | {<>}:{wona})
 
 $a$ = <>:<> ({<>}:{a})
-$e$ = <>:<> ({<>}:{e})
+$ee$ = <>:<> ({<>}:{e})
 $o$ = <>:<> ({<>}:{o})
 
 %Izimelabizo Zokukhomba (Demonstrative Pronouns)
@@ -25,7 +25,7 @@ $nke$ = <>:<> ({<>}:{nke})
 %Izimelabizo Zochazo
 %$isv$ = <>:<> ({<>}:{wo} | {<>}:{eyasesi} | {<>}:{okwase} | {<>}:{obase} | {<>}:{owase} | {<>}:{elase} | {<>}:{esase} | {<>}:{ezase} | {<>}:{eze} | {<>}:{aka} | {<>}:{abaka} | {<>}:{abane}
 
-($esoqobo$ | $esoqobo_o$ | $esoqobo_a$ | $esoqobo_e$ | ($a$$esoqobo_a$) | ($e$$esoqobo_e$) | ($o$$esoqobo_o$)) |\
+($esoqobo$ | $esoqobo_o$ | $esoqobo_a$ | $esoqobo_e$ | ($a$$esoqobo_a$) | ($ee$$esoqobo_e$) | ($o$$esoqobo_o$)) |\
 ($apha$ | $apho$ | $phaya$) |\
 ($isvm$$nke$ | $isvm$$dwa$ | $isvm_dwa$$dwa$)
 
