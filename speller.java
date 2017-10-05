@@ -71,6 +71,7 @@ public class speller implements ActionListener {
 	JButton ignoreAll = new JButton("Ignore All");
 	JButton clearAll = new JButton("Clear Text");
 	JButton checkOnce = new JButton("Show Next");
+	JButton exit = new JButton("Close");
 	JLabel blank = new JLabel();
 	FileWriter fileWriter; 
 
@@ -96,12 +97,13 @@ public class speller implements ActionListener {
 
 	private void initComponent() {
 		//userInput.setPreferredSize(new Dimension(450, 110));
-		
+		logo.setOpaque(false);
 		JPanel panel = new JPanel();
 		GroupLayout layout = new GroupLayout(panel);
-		window.setSize(800, 600);	
+		//window.setSize(800, 600);
+		window.setMinimumSize(new Dimension(800, 470));	
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		panel.setLayout(layout);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
@@ -180,6 +182,7 @@ public class speller implements ActionListener {
 		ignoreAll.addActionListener(this);
 		checkOnce.addActionListener(this);
 		checkText.addActionListener(this);
+		exit.addActionListener(this);
 		
 		//window.highlight(userInput, "untu");
 	    
@@ -196,7 +199,6 @@ public class speller implements ActionListener {
 	    		      .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 	    		    	   //.addComponent(pane, GroupLayout.DEFAULT_SIZE, 200, GroupLayout.DEFAULT_SIZE)
 	    		    	   .addComponent(logo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	    		    	   .addComponent(checkOnce, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	    		           .addComponent(blank)
 	    		    	   .addComponent(checkText, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	    		           .addComponent(blank)
@@ -204,7 +206,9 @@ public class speller implements ActionListener {
 	    		           .addComponent(blank)
 	    		           .addComponent(ignoreAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	    		           .addComponent(blank)
-	    		           .addComponent(clearAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	    		           .addComponent(clearAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				   .addComponent(blank)
+	    		           .addComponent(exit, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 	    		);
 	    		layout.setVerticalGroup(
 	    		   layout.createParallelGroup(GroupLayout.Alignment.CENTER)
@@ -218,7 +222,6 @@ public class speller implements ActionListener {
 	    		      .addGroup(layout.createSequentialGroup()
 	    		    		//.addComponent(pane, GroupLayout.DEFAULT_SIZE, 200, GroupLayout.DEFAULT_SIZE)
 	    		      		.addComponent(logo)
-	    		      		.addComponent(checkOnce)
 	    		      		.addComponent(blank)
 	    		    		.addComponent(checkText)
 	    		      		.addComponent(blank)
@@ -226,7 +229,9 @@ public class speller implements ActionListener {
 	    		      		.addComponent(blank)
 	    		      		.addComponent(ignoreAll)
 	    		      		.addComponent(blank)
-	    		      		.addComponent(clearAll))
+	    		      		.addComponent(clearAll)
+					.addComponent(blank)
+	    		      		.addComponent(exit))
 	    		);
 	    		
 	    //window.add(scrollpane, BorderLayout.CENTER);
@@ -451,6 +456,11 @@ public class speller implements ActionListener {
 		highlightSet = true;
 	}
 
+	/* Closing the JFrame window using the button */
+	private void closeAction() {
+		System.exit(0);
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == openItem) {
 			this.openItemButton();
@@ -466,7 +476,6 @@ public class speller implements ActionListener {
 		}
 		else if (e.getSource() == checkText ) {
 			this.findWords();
-			//this.findWord();
 		}
 		else if (e.getSource() == checkOnce) {
 			this.ignoreOnceAction();
@@ -476,6 +485,9 @@ public class speller implements ActionListener {
 		}
 		else if (e.getSource() == ignoreAll) {
 			this.ignoreAllAction();
+		}
+		else if (e.getSource() == exit) {
+			this.closeAction();
 		}
 		else if (e.getSource() == about) {
 			JOptionPane.showMessageDialog(window, "Hello User\n\n"

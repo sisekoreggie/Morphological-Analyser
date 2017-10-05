@@ -1,9 +1,18 @@
-This is an isiXhosa spelling error detector.
-
+The program highlights incorrectly spelled words in the text area.
 To use the program follow the following steps:
 
-Type or paste any text in the text area, then after that.
-if you want to check for all incorrectly spelled words in the text click the "Show All Errors" button
-otherwise if you want to display one error at a time click the "Show Next Error" button
+Type or paste any text in the text area, then after that, use the following buttons to perform whatever you want to do:
+	Buttons in the interface:
+	1. Show all : Shows all the errors in the text
+	2. Ignore Once : This highlights one error and then ignore only that one and moves to other errors
+	3. Ignore All : This ignores all occurances of that error
+	4. Clear Text : Deletes all the displayed text without saving
+	5. Close : Closes the Spell checker without saving your work
 
-The error detector 
+Click the file menu and then click:
+	1. Open File to load an already existing textfile from your computer.
+	2. Save to save the text to a textfile
+	3. New to clear the contents of the text editor without saving.
+
+Brief Info About the Error Detection Method
+This is an isiXhosa spelling error detector that uses only some of the noun, verb, pronoun, adjective and possessive rules to detect incorrectly spelled words. 
